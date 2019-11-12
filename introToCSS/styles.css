@@ -1,11 +1,14 @@
-h1 {
-    color: red;
+body {
+    background: url("https://i.pinimg.com/736x/b6/07/95/b60795007716db1797bf6245dda97361--wood-texture-background-background-patterns.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
-li {
-    color: green;
+h1 {
+    color: rgba(0, 200, 100, 0.8);
+    border: 2px dashed rgba(0, 200, 100, 0.8);
 }
 
 h4 {
-    color: purple;
+    background: rgb(255, 100, 80);
 }
