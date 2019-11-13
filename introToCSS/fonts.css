@@ -25,9 +25,20 @@ span {
 }
 
 /* font-weight */
+p {
+    font-weight: 200;
+}
 
 /* line-height */
-
+p {
+    line-height: 2;
+}
 /* text-align */
+h1 {
+    text-align: center;
+}
 
 /* text-decoration */
+p {
+    text-decoration: underline;
+}
