@@ -1,13 +1,15 @@
-$("h1").click(() => {
-    alert("h1 clicked!");
-})
+$("h1").on("click", function() {
+    $(this).css("color", "orange");
+});
 
-$("button").click(function() {
-    $(this).css("background", "red"); 
-})
+$("input").on("keypress", function(event) {
+    console.log(event.which);
+});
 
-$("input").keypress(function(evet) {
-    if(event.which === 13) {
-        alert("You hit return key from keyboard");
-    }
+$("button").on("mouseenter", function() {
+    $(this).css("background", "purple");
+});
+
+$("button").on("mouseleave", function() {
+    $(this).css("background", "white");
 })
