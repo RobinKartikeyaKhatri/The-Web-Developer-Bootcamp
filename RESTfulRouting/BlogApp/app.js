@@ -1,8 +1,9 @@
 // App setup and configurations
-var express     = require("express"),
-    mongoose    = require("mongoose"),
-    bodyParser  = require("body-parser"),
-    app         = express();
+var express         = require("express"),
+    methodOverride  = require("method-override"),
+    mongoose        = require("mongoose"),
+    bodyParser      = require("body-parser"),
+    app             = express();
 
 // DB Connection
 mongoose.connect('mongodb://localhost:27017/restful_blog_app', {useNewUrlParser: true});
@@ -10,6 +11,7 @@ mongoose.connect('mongodb://localhost:27017/restful_blog_app', {useNewUrlParser:
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 
 // Schema setup
@@ -44,6 +46,24 @@ app.get("/blogs", function(req, res) {
     });
 });
 
+// NEW Route
+app.get("/blogs/new", function(req, res) {
+    // Shows a form
+    res.render("new");
+});
+
+// CREATE Route
+app.post("/blogs", function(req, res) {
+    // Create blog
+    Blog.create(req.body.blog, function(err, newBlog) {
+        if(err) {
+            res.render("new");
+        } else {
+            // Redirect user
+            res.redirect("/blogs");
+        }
+    });
+});
 
 
 
