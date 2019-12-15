@@ -1,0 +1,11 @@
+<%- include("partials/header") %>
+
+<form action="/movies" method="post">
+    <input type="text" name="movie_name" placeholder="Movie name goes here" required>
+    <input type="text" name="actors" placeholder="Actors name goes here" required>
+    <input type="text" name="year" placeholder="Year goes here" required>
+    <input type="text" name="poster" placeholder="Poster URL goes here" required>
+    <input type="submit" value="Submit">
+</form>
+
+<%- include("partials/footer") %>
