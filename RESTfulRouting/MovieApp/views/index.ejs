@@ -1,18 +1,20 @@
 <%- include("partials/header") %>
 
-<% movies.forEach(function(movie) { %>
-    <div>
-        <h1><%= movie.name %></h1>
-        <img src="<%= movie.poster %>">
-        <h2><%= movie.actors %></h2>
-        <p><%= movie.year %></p>
-        <p>
-            <a class="btn btn-primary" role="button" href="/movies/<%= movie._id %>">Read more</a>
-        </p>
-    </div>
-    
-    
-    
-<% }); %>
+<div class="container">
+    <div class="row">
+            <% movies.forEach(function(movie) { %>
+                <div class="col-lg-3 col-md-3 col-sm-3" style="display: inline-block;">
+                    <h1 class="text-info"><%= movie.name %></h1>
+                    <img style="width: 200px; width: 200px;" class="img-thumbnail img-fluid" src="<%= movie.poster %>">
+                    <p><%= movie.actors %></p>
+                    <p><%= movie.year %></p>
+                    <p>
+                        <a class="btn btn-primary" role="button" href="/movies/<%= movie._id %>">Read more</a>
+                    </p>
+                </div>    
+            <% }); %>
+    </div>        
+</div>
+
 
 <%- include("partials/footer") %>

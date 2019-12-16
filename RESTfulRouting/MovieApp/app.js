@@ -114,7 +114,16 @@ app.put("/movies/:id", function(req, res) {
 });
 
 // DESTROY ROUTE
-
+app.delete("/movies/:id", function(req, res) {
+    Movie.findByIdAndRemove(req.params.id, function(err) {
+        if (err) {
+            res.redirect("/movies/" + req.params.id);
+        } else {
+            console.log("A record has been deleted");
+            res.redirect("/");
+        }
+    });
+});
 
 
 // Server Connection

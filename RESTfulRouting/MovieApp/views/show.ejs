@@ -6,6 +6,9 @@
     <h2><%= movie.actors %></h2>
     <p><%= movie.year %></p>
     <a href="/movies/<%= movie._id %>/edit" class="btn btn-primary" role="button">Edit</a>
+    <form action="/movies/<%= movie._id %>?_method=DELETE" method="post">
+        <button class="btn btn-danger" role="button">Delete</button>
+    </form>
 </div>
 
 <%- include("partials/footer") %>
