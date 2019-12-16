@@ -54,10 +54,11 @@ app.get("/movies/new", function(req, res) {
 // CREATE ROUTE
 app.post("/movies", function(req, res) {
     // Grab form data and send to DB
-    var name = req.body.name;
-    var actors = req.body.actors;
-    var year = req.body.year;
-    var poster = req.body.poster;
+    var name = req.sanitize(req.body.movie_name);
+    var actors = req.sanitize(req.body.actors);
+    var year = req.sanitize(req.body.year);
+    var poster = req.sanitize(req.body.poster);
+
     var newData = {name: name, actors: actors, year: year, poster: poster};
 
     Movie.create(newData, function(err, newMovie) {
@@ -69,6 +70,51 @@ app.post("/movies", function(req, res) {
         }
     });
 });
+
+// SHOW ROUTE
+app.get("/movies/:id", function(req, res) {
+    // Grab specific data from DB
+    Movie.findById(req.params.id, function(err, foundMovie) {
+        if (err) {
+            res.redirect("/");
+        } else {
+            res.render("show", {movie: foundMovie});
+        }
+    });
+});
+
+// EDIT ROUTE
+app.get("/movies/:id/edit", function(req, res) {
+    Movie.findById(req.params.id, function(err, foundMovie) {
+        if (err) {
+            res.redirect("/movies/" + req.params.id);
+        } else {
+            res.render("edit", {movie: foundMovie});
+        }
+    });
+});
+
+
+// UPDATE ROUTE
+app.put("/movies/:id", function(req, res) {
+    var name = req.sanitize(req.body.movie_name);
+    var actors = req.sanitize(req.body.actors);
+    var year = req.sanitize(req.body.year);
+    var poster = req.sanitize(req.body.poster);
+
+    var newData = {name: name, actors: actors, year: year, poster: poster}
+
+    Movie.findByIdAndUpdate(req.params.id, newData, function(err) {
+        if (err) {
+            res.redirect("/movies/" + req.params.id);
+        } else {
+            res.redirect("/");
+        }
+    });
+});
+
+// DESTROY ROUTE
+
 
 
 // Server Connection

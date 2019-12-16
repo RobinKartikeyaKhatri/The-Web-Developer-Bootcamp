@@ -1,0 +1,11 @@
+<%- include("partials/header") %>
+
+<form action="/movies/<%= movie._id %>?_method=PUT" method="post">
+    <input type="text" name="movie_name" value="<%= movie.name%>" required>
+    <input type="text" name="actors" value="<%= movie.actors %>" required>
+    <input type="text" name="year" value="<%= movie.year %>" required>
+    <input type="text" name="poster" value="<%= movie.poster %>" required>
+    <input type="submit" value="Submit">
+</form>
+
+<%- include("partials/footer") %>
